@@ -22,11 +22,11 @@
   * `$ pwd` "Print working directory", prints the name of the working directory.
   * `$ clear` Clear terminal screen.
   * `$ man` Manual.
-  * `vim` 文字編輯器
-  * `cat` 看檔案內容
-  * `curl` 送出 request
+  * `vim` Text editor. insert mode: `i`, leave insert mode: `esc`, quit: `:q`, save and quit: `:wq`.
+  * `$ cat` Concatenate and display the content of files.
+  * `$ curl` Create a request, transfer data from or to a server.
   * `>` Redirection.  
     `>>` Append content to the end of the file.
-  * `|` Pipe 指令的組合
+  * `|` Pipe operator, pass the output of one command to another for further processing.
 
   [The complete list](https://ss64.com/osx/)
