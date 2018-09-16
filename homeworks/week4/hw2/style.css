@@ -1,0 +1,153 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.container--banner {
+  height: 278px;
+  background-image: url(https://i.imgur.com/eUCzldv.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.container--background {
+  background: #ede7f6;
+  width: 100%;
+  height: 100%;
+}
+
+span {
+  color: #db4437;
+}
+
+.form {
+  position: relative;
+  box-sizing: border-box;
+  margin: auto;
+  padding: 34px 17px;
+  max-width: 640px;
+  top: -100px;
+  background: white;
+  border-top: 8px solid #4d79ff;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+.form > div {
+  display: block;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0 17px;
+  width: 100%;
+  max-width: 606px;
+}
+.form--header--title {
+  font-size: 3.4rem;
+}
+.form--header--content {
+  margin: 22px 0;
+  font-size: 1.3rem;
+  line-height: 2;
+}
+.form--body--content {
+  margin-top: 2px;
+  padding: 16px 17px;
+}
+.form--body--submit {
+  margin-top: 34px;
+  margin-left: 17px;
+}
+.form--body--submit p {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 1.2rem;
+}
+
+.input--title {
+  font-size: 2rem;
+  line-height: 135%;
+}
+.input--title p {
+  font-size: 1.3rem;
+  line-height: 135%;
+}
+.input--content {
+  margin: 8px 0 8px 0;
+  padding: 8px 0 8px 0;
+}
+
+.radio {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+label {
+  font-size: 1.6rem;
+}
+
+input[type=radio] {
+  display: inline-block;
+  margin: auto 1rem auto 0;
+}
+
+input[type=email], input[type=text] {
+  border: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.12);
+  background-color: transparent;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+}
+
+::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+#submit {
+  width: 88px;
+  height: 36px;
+  border: none;
+  border-radius: 3px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  background-color: #4285f4;
+}
+#submit:hover {
+  cursor: pointer;
+}
+
+input[data-width="50"] {
+  width: 50%;
+}
+
+input[data-width="100"] {
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  input[data-width="50"] {
+    width: 100%;
+  }
+}
+.footer {
+  margin: -52px auto 34px auto;
+  max-width: 640px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+.footer--logo {
+  margin: 24px 0;
+  font-size: 2.21rem;
+  color: rgba(0, 0, 0, 0.26);
+}
+.footer a {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+/*# sourceMappingURL=style.css.map */
