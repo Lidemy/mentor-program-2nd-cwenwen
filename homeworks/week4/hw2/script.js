@@ -34,9 +34,11 @@ q("form").addEventListener('submit', e => {
     if (reqText[i].value === "") {
       e.preventDefault();
       showWarning(reqText[i]);
+      reqText[i].classList.add("border-bottom-red");
 
     } else {
       hideWarning(reqText[i]);
+      reqText[i].classList.remove("border-bottom-red");
     }
   }
 

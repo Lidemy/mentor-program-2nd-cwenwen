@@ -138,6 +138,10 @@ input[type="email"], input[type="text"] {
   line-height: 2.4rem;
 }
 
+.border-bottom-red {
+  border-bottom: 2px solid $color-red !important;
+}
+
 ::placeholder {
   color: rgba(0,0,0,.4);
 }
@@ -153,7 +157,11 @@ input[type="email"], input[type="text"] {
   text-transform: uppercase;
   color: white;
   background-color: $color-submit;
-
+  // Not using iOS default btn styles
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+          
   &:hover {
     cursor: pointer;
   }

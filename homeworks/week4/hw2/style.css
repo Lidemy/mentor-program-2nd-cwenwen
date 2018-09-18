@@ -110,6 +110,10 @@ input[type=email], input[type=text] {
   line-height: 2.4rem;
 }
 
+.border-bottom-red {
+  border-bottom: 2px solid #db4437 !important;
+}
+
 ::placeholder {
   color: rgba(0, 0, 0, 0.4);
 }
@@ -125,6 +129,9 @@ input[type=email], input[type=text] {
   text-transform: uppercase;
   color: white;
   background-color: #4285f4;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 #submit:hover {
   cursor: pointer;
