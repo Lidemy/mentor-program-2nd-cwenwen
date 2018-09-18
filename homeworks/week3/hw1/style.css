@@ -11,7 +11,7 @@ html {
   font-size: 16px;
 }
 
-a, button {
+[class$=btn] {
   cursor: pointer;
   border: 0;
   border-radius: 4px;
@@ -51,7 +51,7 @@ a, button {
   max-width: 960px;
 }
 
-p {
+.p-margin {
   margin: 10px 0px;
 }
 
@@ -98,7 +98,7 @@ p {
   margin-left: 1rem;
 }
 
-footer {
+.footer__copyright {
   padding-top: 20px;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
