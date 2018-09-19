@@ -44,7 +44,7 @@ function getTop5GamesFromAPI(callback) {
 function getStreamsFromAPI(callback) {
 
   const xhr =  new XMLHttpRequest();
-  const url = `https://api.twitch.tv/helix/streams?game=${gameID}&first=20`;
+  const url = `https://api.twitch.tv/helix/streams?game=${gameID}&first=24`;
 
   xhr.open('GET', url);
   xhr.setRequestHeader('Client-ID', myClientID);
@@ -60,3 +60,12 @@ function getStreamsFromAPI(callback) {
 }
 
 function showStreams() {}
+
+
+// Bootstrap jQuery
+
+$(".navbar .nav-item").on("click", function () {
+  $(".navbar").find(".active").removeClass("active");
+  $(this).addClass("active");
+})
+
