@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="A practice with Twitch API" />
-  <meta name="keywords" content="HTML,CSS,JavaScript,Twitch,Ajax,API" />
+  <meta name="description" content="A practice with Twitch API, showing the most popular games at the moment" />
+  <meta name="keywords" content="HTML,CSS,JavaScript,Twitch,Ajax,API,Bootstrap" />
   <meta name="author" content="Wenwen Cheng" />
   <meta property="og:title" content="Twitch Live Games" />
   <meta property="og:type" content="website" />
-  <meta property="og:description" content="A practice with Twitch API" />
-  <meta property="og:url" content="" />
-  <meta property="og:image" content="" />
+  <meta property="og:description" content="A practice with Twitch API, showing the most popular games at the moment" />
+  <meta property="og:url" content="https://cwenwen.github.io/APIsPractice/Twitch_API/" />
+  <meta property="og:image" content="https://i.imgur.com/oAf6eLy.jpg" />
   <title>Twitch Live Games</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
@@ -25,19 +25,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="game--1 nav-link" href="#">Fortnite</a>
+          <a class="game--1 nav-link" href="#"></a>
         </li>
         <li class="nav-item">
-          <a class="game--2 nav-link" href="#">World of Warcraft</a>
+          <a class="game--2 nav-link" href="#"></a>
         </li>
         <li class="nav-item">
-          <a class="game--3 nav-link" href="#">League of Legends</a>
+          <a class="game--3 nav-link" href="#"></a>
         </li>
         <li class="nav-item">
-          <a class="game--4 nav-link" href="#">Dota 2</a>
+          <a class="game--4 nav-link" href="#"></a>
         </li>
         <li class="nav-item">
-          <a class="game--5 nav-link" href="#">IRL</a>
+          <a class="game--5 nav-link" href="#"></a>
         </li>
       </ul>
       <span class="navbar-text text-light">
@@ -45,23 +45,13 @@
       </span>
     </div>
   </nav>
-  <h1 class="main--title mt-3 display-4 text-center">League of Legends</h1>
+  <h1 class="main--title mt-3 display-4 text-center">Twitch Live Games</h1>
   <p class="main--subtitle lead text-center">
-    Top 24 popular live streams sorted by number of current viewers
+    Top 8 popular live streams sorted by number of current viewers
   </p>
   <div class="container">
-    <div class="row">
-      <a href="#" class="streambox col-12 col-sm-6 col-md-4 col-lg-3 p-1">
-        <img class="stream--thumbnail img-fluid" src="https://artsy-media-uploads.s3.amazonaws.com/pwHkT4JM6ID3XvIMsOhyoQ%2Fcustom-Custom_Size___purple+3+thumb.jpg" alt="Stream thumbnail" />
-        <div class="streambox--info row m-0">
-          <div class="col-3 p-2"><img class="stream-logo rounded-circle img-fluid" src="https://www.fabricfindersinc.com/wp-content/uploads/2017/10/pink-gingham-300x300.jpg" /></div>
-          <div class="col-9 p-1 flex-column">
-            <div class="h-50 d-flex"><div class="stream--title align-self-center text-truncate">123678yhulheljwkgbjrklwjgk;lewjhkel;whghfekljwfhelhtuqlewgreqgewr;ghw</div></div>
-            <div class="h-50 d-flex"><div class="stream--username align-self-center text-truncate"><small>AAAAAAAAAAA</small></div></div>
-          </div>
-        </div>
-      </a>
-    </div>
+    <div class="streams row"></div>
+    <div class="footer text-muted text-center m-4">This page is created by <a href="https://github.com/cwenwen">me</a> - <a href="https://github.com/cwenwen/APIsPractice/tree/master/Twitch_API">View on Github</a></div>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
