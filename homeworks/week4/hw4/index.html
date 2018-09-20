@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+  <style type="text/css">
+  .block {
+    margin: 10px;
+    padding: 10px;
+    width: 100px;
+    border-style: solid;
+    text-align: center;
+  }
+  .test {
+    margin: 10px;
+    padding: 10px;
+    width: 100px;
+    border-style: solid;
+    text-align: center;
+    color: red;
+  }
+  </style>
+</head>
+<body>
+  <div class="block">Hello</div>
+  <div class="test">XD</div>
+  <div class="block">world</div>
+  <div class="btns">
+    <input type="button" id="hidden" value="hide">
+    <input type="button" id="visible" value="show">
+  </div>
+  <script>
+    const q = (selecror) => {
+      return {
+        hide: () => document.querySelector(selecror).style.visibility = "hidden",
+        show: () => document.querySelector(selecror).style.visibility = "visible"
+      }
+    }
+    document.querySelector('#hidden').addEventListener('click', () => q('.test').hide())
+    document.querySelector('#visible').addEventListener('click', () => q('.test').show())
+  </script>
+</body>
