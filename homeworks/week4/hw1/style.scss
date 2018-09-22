@@ -1,0 +1,143 @@
+@import 'reset';
+@import 'border-box';
+
+$color-blue: #0000FF;
+$color-blue-opr: #0066ff;
+$color-blue-num: #0099ff;
+$color-purple: #884dff;
+$color-purple-opr: #9966ff;
+$color-purple-num: #bb99ff;
+
+// buttons height and width: 80px; 
+// result height: btn * 1.5; 
+// btn-pad height: btn * 5;
+$cal-height: 520px; // btn * 6.5  
+$cal-width: 320px;  // btn * 4
+
+html {
+  font-family: 'Nanum Gothic', serif;
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Blue theme */
+.result {
+  background-color: $color-blue;
+}
+.opr, #ac, #c, #equal {
+  background-color: $color-blue-opr;
+}
+.num {
+  background-color: $color-blue-num;
+}
+
+/* Purple theme */
+.purple {
+  .result {
+    background-color: $color-purple;
+  }
+  .opr, #ac, #c, #equal {
+    background-color: $color-purple-opr;
+  }
+  .num {
+    background-color: $color-purple-num;
+  }
+}
+
+/* Theme buttons */
+.navbar {
+  display: flex;
+  margin: 0 auto;
+  width: $cal-width;
+  background-color: #404040;
+
+  div {
+    width: 50%;
+    line-height: 2rem;
+    text-align: center;
+    font-variant: small-caps;
+
+    &:hover {
+      cursor: pointer;
+      background: #4d4d4d;
+    }
+  }
+}
+
+/* Calculator body */
+.wrapper {
+  position: relative;
+  margin: 0 auto;
+  width: $cal-width;
+  height: $cal-height;
+}
+
+.result {
+  position: absolute;
+  width: 100%;
+  height: $cal-height / 13 * 3;
+  text-align: end; 
+  
+  * {
+    width: 90%;
+    margin: 3%;
+    overflow: hidden;
+  }
+
+  &-output {
+    font-size: 2rem;
+  }
+}
+
+.btn {
+  position: absolute;
+  top: $cal-height / 13 * 3;
+  width: 100%;
+  height: $cal-height / 13 * 10;
+
+  &-row {
+    display: flex;
+    height: 20%;
+    line-height: $cal-height / 13 * 10 / 5;
+    text-align: center;
+
+    div:hover {
+      cursor: pointer;
+      filter: opacity(85%);
+    }
+  
+    div:active {
+      filter: opacity(80%);
+    }
+  }
+}
+
+.opr, 
+.num,
+#equal,
+#c {
+  width: 25%;
+}
+
+#ac {
+  width: 50%;
+}
+
+#ac, #c, #equal {
+  filter: opacity(90%);
+
+  &:hover {
+    filter: opacity(85%);
+  }
+
+  &:active {
+    filter: opacity(80%);
+  }
+}
+
+/* RWD for mobile phones */
+@media screen and (max-width: 480px) {
+  .wrapper, .navbar {
+    width: 100%;
+  }
+}
