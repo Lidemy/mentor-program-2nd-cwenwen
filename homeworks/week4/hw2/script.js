@@ -57,7 +57,7 @@ q("form").addEventListener('submit', e => {
     response.applyFor = typeValue;
     response.currentJob = q('input[name="job"]').value;
     response.background = q('input[name="background"]').value;
-    response.other = q('input[name="other"]').value;
+    response.others = q('input[name="others"]').value;
 
     console.log("Your respnose:");
     console.log(response);
