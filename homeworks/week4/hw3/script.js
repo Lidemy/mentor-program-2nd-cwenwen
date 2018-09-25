@@ -2,7 +2,7 @@ const q = (selecror) => document.querySelector(selecror);
 const qAll = (selecror) => document.querySelectorAll(selecror);
 
 // Global variables
-const myClientID = 'jdsl3lgf1c8gcxi44u29sm30m015n3';
+const myClientId = 'jdsl3lgf1c8gcxi44u29sm30m015n3';
 
 getTop5GamesFromAPI(function (gameResp) {
 
@@ -12,18 +12,18 @@ getTop5GamesFromAPI(function (gameResp) {
     qAll('[class^="game--"]')[i].innerText = gameResp.data[i].name;
   }
   // Default: display 1st game's streams
-  let gameID = q('.game--1').id;
+  let gameId = q('.game--1').id;
   q('.main--title').innerText = q('.game--1').innerText;
-  showStreams(gameID);
+  showStreams(gameId);
 })
 
 // Display the streams of the different gamse
 for (let i = 0; i < 5; i++) {
   qAll('[class^="game--"]')[i].addEventListener('click', e => {
-    let gameID = e.target.id;
+    let gameId = e.target.id;
     q('.main--title').innerText = e.target.innerText;
     q('.streams').innerHTML = '';
-    showStreams(gameID);
+    showStreams(gameId);
   })
 }
 
@@ -35,7 +35,7 @@ function getTop5GamesFromAPI(callback) {
   const url = 'https://api.twitch.tv/helix/games/top?first=5';
 
   xhr.open('GET', url);
-  xhr.setRequestHeader('Client-ID', myClientID);
+  xhr.setRequestHeader('Client-ID', myClientId);
   xhr.responseType = 'json';
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -46,13 +46,13 @@ function getTop5GamesFromAPI(callback) {
   xhr.send();
 }
 
-function getStreamsFromAPI(gameID, callback) {
+function getStreamsFromAPI(gameId, callback) {
 
   const xhr =  new XMLHttpRequest();
-  const url = `https://api.twitch.tv/helix/streams?game_id=${gameID}&first=24`;
+  const url = `https://api.twitch.tv/helix/streams?game_id=${gameId}&first=24`;
 
   xhr.open('GET', url);
-  xhr.setRequestHeader('Client-ID', myClientID);
+  xhr.setRequestHeader('Client-ID', myClientId);
   xhr.responseType = 'json';
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -71,7 +71,7 @@ function getUserFromAPI(userIds, callback) {
     url += `&id=${userIds[i]}`;
   }
   xhr.open('GET', url);
-  xhr.setRequestHeader('Client-ID', myClientID);
+  xhr.setRequestHeader('Client-ID', myClientId);
   xhr.responseType = 'json';
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -82,8 +82,8 @@ function getUserFromAPI(userIds, callback) {
   xhr.send();
 }
 
-function showStreams(gameID) {
-  getStreamsFromAPI(gameID, function (streamResp) {
+function showStreams(gameId) {
+  getStreamsFromAPI(gameId, function (streamResp) {
     let userIds = [];
     for (let i = 0; i < streamResp.data.length; i++) {
       userIds.push(streamResp.data[i].user_id);
