@@ -1,0 +1,12 @@
+.bg-light-grey {
+  background-color: #eee;
+}
+
+.footer a {
+  color: #6c757d;
+
+}
+.footer a:hover {
+  color: black;
+  text-decoration: none;
+}
