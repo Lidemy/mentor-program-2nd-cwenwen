@@ -38,4 +38,24 @@
   border: 1px solid #ccc;
 }
 
+.login {
+  display: flex;
+  flex-direction: column;
+}
+.login * {
+  padding: 0.5rem;
+  border: 1px solid #999;
+}
+.login [type=submit] {
+  text-transform: uppercase;
+  color: white;
+  background-color: #999;
+  transition: 0.3s;
+}
+.login [type=submit]:hover {
+  cursor: pointer;
+  background-color: #ccc;
+  border: 1px solid #ccc;
+}
+
 /*# sourceMappingURL=style.css.map */

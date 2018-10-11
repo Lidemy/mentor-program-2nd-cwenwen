@@ -49,3 +49,26 @@ $create-comment-grey-medium: #999;
     }
   }
 }
+
+.login {
+  display: flex;
+  flex-direction: column;
+
+  * {
+    padding: .5rem;
+    border: 1px solid $create-comment-grey-medium;
+  }
+
+  [type="submit"] {
+    text-transform: uppercase;
+    color: white;
+    background-color: $create-comment-grey-medium;
+    transition: .3s;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $create-comment-grey-light;
+      border: 1px solid $create-comment-grey-light;
+    }
+  }
+}
