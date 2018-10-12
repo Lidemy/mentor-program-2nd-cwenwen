@@ -106,11 +106,16 @@ app.post('/register', (req, res) => {
   });
 });
 
+app.get('/', (req, res) =>{
+  res.render('index');
+})
+
+/*
 // route: home
 app.get('/', (req, res) =>{
   res.redirect('/pages/1');
 })
-
+*/
 // show comments ; handle pages
 app.get('/pages/:page', (req, res) => {
 
