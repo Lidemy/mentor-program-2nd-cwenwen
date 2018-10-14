@@ -1,3 +1,11 @@
+// from npm
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
+// from db.js
+const conn = require('../db').conn;
+const usersTable = require('../db').usersTable;
+
 module.exports =  {
 
   register: (req, res) => {
@@ -6,7 +14,7 @@ module.exports =  {
       values: [ usersTable, req.body.username ]
     
     }, (error, results) => {
-      if (error) throw error;
+      if (error) console.log(error);
   
       // usable username, insert into db
       if( results.length === 0) {
@@ -16,7 +24,7 @@ module.exports =  {
           values: [ usersTable, req.body.username, bcrypt.hash(req.body.password, saltRounds), req.body.nickname ]
   
         }, (error, results) => {
-          if (error) throw error;
+          if (error) console.log(error);
   
           // set session
           req.session.user_id = results.insertId;
@@ -37,7 +45,7 @@ module.exports =  {
       values: [ usersTable, req.body.username ]
   
     }, (error, results) => {
-      if (error) throw error;
+      if (error) console.log(error);
   
       // username found
       if (results.length !== 0){
@@ -64,6 +72,6 @@ module.exports =  {
 
   logout: (req, res) => {
     req.session.destroy();
-    res.redirect('/pages/1');
+    res.redirect('/');
   }
 }

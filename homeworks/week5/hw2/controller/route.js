@@ -1,6 +1,7 @@
 module.exports = {
   index: (req, res) =>{
-    res.render('index');
+    const nickname = req.session.nickname;
+    res.render('index', {nickname});
   },
   
   login: (req, res) => {

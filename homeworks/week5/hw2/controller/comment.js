@@ -1,3 +1,11 @@
+// from npm
+const mysql = require('mysql');
+
+// from db.js
+const conn = require('../db').conn;
+const usersTable = require('../db').usersTable;
+const commentsTable = require('../db').commentsTable;
+
 module.exports = {
   
   showComments: (req, res) => {
