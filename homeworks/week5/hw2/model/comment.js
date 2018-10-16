@@ -7,8 +7,8 @@ const Comment = sequelize.define('comment', {
     primaryKey: true,
     autoIncrement: true,
   },
-  userId: {
-    type: Sequelize.INTEGER,
+  username: {
+    type: Sequelize.STRING(16),
     allowNull: false
   },
   parentId: {
