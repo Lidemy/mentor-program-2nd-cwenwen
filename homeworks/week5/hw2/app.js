@@ -34,7 +34,7 @@ app.get('/login', routeController.login);
 app.get('/register', routeController.register);
 
 // handle user
-//app.post('/login', userController.login);
+app.post('/login', userController.login);
 app.post('/register', userController.register);
 app.get('/logout', userController.logout);
 
