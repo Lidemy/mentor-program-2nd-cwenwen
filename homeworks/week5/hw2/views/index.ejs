@@ -31,12 +31,12 @@
   <div class="container col-12 col-sm-10 col-md-8 col-lg-7 col-xl-6">
     <div class="m-4 lead"><% if (!nickname) { %>Please log in to leave your comment<% } else { %>Hello, <%= nickname %><% } %></div>
     <% if (nickname) { %>
-      <form class="create-comment my-4 p-4 rounded" action="" method="post">
+      <div class="create-comment my-4 p-4 rounded">
         <input type="text" name="topic" class="create-comment--topic rounded" placeholder="Topic" required />
         <textarea name="content" class="create-comment--content mt-2 rounded" placeholder="Comment" required></textarea>
         <input name="parent_id" type="hidden" value="0" />
-        <input type="submit" class="mt-2 rounded" />
-      </form>
+        <input class="create-comment__btn mt-2 rounded" type="submit" />
+      </div>
     <% } %>
     <div class="comment mb-4 p-5 bg-light-grey rounded">
       <h1 class="comment--topic display-4">Topic</h1>
@@ -60,12 +60,12 @@
         <p class="subcomment--content m-0 p-0">Aenean vestibulum, dui vitae vestibulum finibus, ipsum neque interdum mi, eu scelerisque magna ligula sed odio. Aliquam ex nibh, convallis ultrices luctus vel, pharetra vitae sapien. Quisque efficitur tincidunt justo, at rutrum ligula finibus et.</p>    
       </div>
       <% if (nickname) { %>
-        <form class="create-comment-sub mt-3 ml-4 p-4 rounded" action="" method="post">
+        <div class="create-comment-sub mt-3 ml-4 p-4 rounded" action="" method="post">
+          <input name="topic" type="hidden" value="topic" />  
           <textarea name="content" class="create-comment-sub--content rounded" placeholder="Comment" required></textarea>
-          <input name="topic" type="hidden" value="" />
-          <input name="parent_id" type="hidden" value="" />
-          <input type="submit" class="mt-2 rounded" />
-        </form>
+          <input name="parent_id" type="hidden" value="123" />
+          <input class="create-comment__btn mt-2 rounded" type="submit" />
+        </div>
       <% } %>
     </div>
     <div class="footer text-muted text-center m-4">This page is created by <a class="font-weight-bold" href="https://github.com/cwenwen">me</a> - <a class="font-weight-bold" href="#">View on Github</a></div>

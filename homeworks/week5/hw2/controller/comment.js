@@ -1,13 +1,32 @@
-// from npm
-const mysql = require('mysql');
-
-// from db.js
-const conn = require('../db').conn;
-const usersTable = require('../db').usersTable;
-const commentsTable = require('../db').commentsTable;
+const Comment = require('../model/comment');
 
 module.exports = {
   
+  insertComment: (req, res) => {
+    Comment
+    .create({
+      username: req.session.username,
+      topic: req.body.topic,
+      content: req.body.content,
+      parentId: req.body.parentId
+    })
+    .then((comment) => {
+      const commentId = comment.dataValues.id;
+      Comment
+        .findAll({
+          where: {
+            id: commentId
+          }
+        })
+        .then(data => {
+          const createdAt = data[0].dataValues.createdAt
+          res.send('ok');
+        })
+        .catch(error => {throw error})
+    })
+    .catch(error => {throw error})
+  },
+
   showComments: (req, res) => {
 
     let totalPages,
@@ -98,35 +117,6 @@ module.exports = {
   
       if (error) res.send('error');
       else res.send('comment deleted');
-    });
-  },
-
-  insertComment: (req, res) => {
-
-    const sql = 'INSERT INTO ?? ( user_id, parent_id, topic, content ) VALUES (?, ?, ?, ?)';
-    const inserts = [commentsTable, req.session.user_id, req.body.parent_id, req.body.topic, req.body.content];
-    sql = mysql.format(sql, inserts);
-  
-    conn.query({ sql }, (error, results) =>{
-      if (error) throw error;
-  
-      // get id
-      const comment_id = results.insertId;
-  
-      // get created_at
-      conn.query({
-        sql: 'SELECT created_at FROM ?? AS c WHERE c.id = ?',
-        values: [commentsTable, comment_id]
-  
-      }, (error, results) => {
-        if (error) throw error;
-  
-        res.json({
-          "nickname": req.session.nickname,
-          "comment_id": comment_id,
-          "created_at": results[0].created_at
-        });
-      });
     });
   }
 }

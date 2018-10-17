@@ -23,7 +23,7 @@ const Comment = sequelize.define('comment', {
     type: Sequelize.TEXT,
     allowNull: false
   },
-  createAt: {
+  createdAt: {
     type: Sequelize.DATE
   }
 }, {
