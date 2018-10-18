@@ -42,7 +42,7 @@
     <div class="comment mb-4 p-5 bg-light-grey rounded">  
     <h1 class="comment--topic display-4"><%= comments[i].topic %></h1>
       <div class="row">
-        <div class="col"><span class="comment--nickname"><%= comments[i].nickname %></span><span class="comment--username ml-2 font-weight-light font-italic"><%= comments[i].username %></span></div><div class="comment--created-at col text-right"><%= comments[i].createdAt.toString().slice(4, 21) %></div>
+        <div class="col"><span class="comment--nickname"><%= comments[i].nickname %></span><span class="comment--username ml-2 font-weight-light font-italic">(<%= comments[i].username %>)</span></div><div class="comment--created-at col text-right"><%= comments[i].createdAt.toString().slice(4, 21) %></div>
       </div>
       <hr />
       <p class="comment--content pb-3"><%- comments[i].content.replace(/\n/g, '<br/>') %></p>
