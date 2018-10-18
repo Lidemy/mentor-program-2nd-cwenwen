@@ -71,4 +71,8 @@
   text-decoration: none;
 }
 
+.comment--topic {
+  word-break: break-all;
+}
+
 /*# sourceMappingURL=style.css.map */

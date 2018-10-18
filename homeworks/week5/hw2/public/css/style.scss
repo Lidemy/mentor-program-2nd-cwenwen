@@ -86,3 +86,7 @@ $create-comment-grey-medium: #999;
     text-decoration: none;
   }
 }
+
+.comment--topic {
+  word-break: break-all;
+}
