@@ -38,27 +38,14 @@
         <input class="create-comment__btn mt-2 rounded" type="submit" />
       </div>
     <% } %>
-    <div class="comment mb-4 p-5 bg-light-grey rounded">
-      <h1 class="comment--topic display-4">Topic</h1>
+    <% for (let i = 0; i < comments.length; i++ ) { %>
+    <div class="comment mb-4 p-5 bg-light-grey rounded">  
+    <h1 class="comment--topic display-4"><%= comments[i].topic %></h1>
       <div class="row">
-        <div class="col"><span class="comment--nickname">Nickname</span><span class="comment--username ml-2 font-weight-light font-italic">Username</span></div><div class="comment--created-at col text-right">2018-03-18 15:42:11</div>
+        <div class="col"><span class="comment--nickname"><%= comments[i].nickname %></span><span class="comment--username ml-2 font-weight-light font-italic"><%= comments[i].username %></span></div><div class="comment--created-at col text-right"><%= comments[i].createdAt.toString().slice(4, 21) %></div>
       </div>
       <hr />
-      <p class="comment--content pb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac placerat metus. Praesent blandit sem vulputate hendrerit dapibus. Praesent porttitor fringilla eros, sit amet cursus diam tincidunt nec. In ut magna dui. Fusce sollicitudin lobortis dictum. Donec nec lacus vel risus dapibus vestibulum id vel velit. Aliquam interdum imperdiet viverra. Maecenas feugiat ante eget tellus imperdiet tincidunt eu vitae ex. Maecenas interdum diam sed molestie luctus. Mauris ornare, mi id accumsan porta, mauris massa facilisis est, id accumsan enim augue eget sem. Aenean vestibulum, dui vitae vestibulum finibus, ipsum neque interdum mi, eu scelerisque magna ligula sed odio. Aliquam ex nibh, convallis ultrices luctus vel, pharetra vitae sapien. Quisque efficitur tincidunt justo, at rutrum ligula finibus et.</p>
-      <div class="subcomment mt-3 ml-4 p-4 bg-light rounded">
-        <div class="row">
-          <div class="col"><span class="subcomment--nickname">Nickname</span><span class="subcomment--username ml-2 font-weight-light font-italic">Username</span></div><div class="subcomment--created-at col text-right">2018-03-18 15:42:11</div>
-        </div>
-        <hr />
-        <p class="subcomment--content m-0 p-0">Aenean vestibulum, dui vitae vestibulum finibus, ipsum neque interdum mi, eu scelerisque magna ligula sed odio. Aliquam ex nibh, convallis ultrices luctus vel, pharetra vitae sapien. Quisque efficitur tincidunt justo, at rutrum ligula finibus et.</p>
-      </div>
-      <div class="subcomment mt-3 ml-4 p-4 border rounded">
-        <div class="row">
-          <div class="col"><span class="subcomment--nickname">Nickname</span><span class="subcomment--username ml-2 font-weight-light font-italic">Username</span></div><div class="subcomment--created-at col text-right">2018-03-18 15:42:11</div>
-        </div>
-        <hr />
-        <p class="subcomment--content m-0 p-0">Aenean vestibulum, dui vitae vestibulum finibus, ipsum neque interdum mi, eu scelerisque magna ligula sed odio. Aliquam ex nibh, convallis ultrices luctus vel, pharetra vitae sapien. Quisque efficitur tincidunt justo, at rutrum ligula finibus et.</p>    
-      </div>
+      <p class="comment--content pb-3"><%- comments[i].content.replace(/\n/g, '<br/>') %></p>
       <% if (nickname) { %>
         <div class="create-comment-sub mt-3 ml-4 p-4 rounded" action="" method="post">
           <input name="topic" type="hidden" value="topic" />  
@@ -68,6 +55,7 @@
         </div>
       <% } %>
     </div>
+    <% } %>
     <div class="footer text-muted text-center m-4">This page is created by <a class="font-weight-bold" href="https://github.com/cwenwen">me</a> - <a class="font-weight-bold" href="#">View on Github</a></div>
   </div>
   <%- include('scripts', {jsFile: 'index'}) %>

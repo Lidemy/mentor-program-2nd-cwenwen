@@ -1,4 +1,10 @@
+const Sequelize = require('sequelize');
+const sequelize = require('../model/db');
 const Comment = require('../model/comment');
+const User = require('../model/user');
+
+User.hasMany(Comment, {foreignKey: 'username'});
+Comment.belongsTo(User, {foreignKey: 'username'});
 
 module.exports = {
   
@@ -26,74 +32,16 @@ module.exports = {
     })
     .catch(error => {throw error})
   },
-
+  
   showComments: (req, res) => {
-
-    let totalPages,
-        currentPage,
-        commentStartNumber;
-  
-    // check if user has logged in
-    if (typeof(req.session.user_id) !== 'undefined') {
-      res.locals.user = { user_id: req.session.user_id, nickname: req.session.nickname };
-    } else {
-      res.locals.user = { user_id: undefined, nickname: undefined };
-    }
-  
-    // get the number of main comments
-    conn.query({ 
-      sql: 'SELECT COUNT(parent_id) AS datanum FROM ?? WHERE parent_id = 0',
-      values: [ commentsTable ]
-  
-    }, (error, results) => { 
-      if (error) throw error;
-  
-      // calculate the number of pages
-      totalPages = Math.ceil(results[0].datanum / 10); 
-      res.locals.totalPages = totalPages;
-  
-      // handle invalid page number
-      if (parseInt(req.params.page) < 0 || parseInt(req.params.page) > totalPages || isNaN(parseInt(req.params.page))) {
-        res.redirect('/pages/1');
-  
-      } else {
-        // set current page
-        currentPage = parseInt(req.params.page);
-        res.locals.currentPage = currentPage;
-  
-        // find the first comment of each page
-        commentStartNumber = ( currentPage - 1 ) * 10;
-      };
-  
-      // get 10 comments for current page
-      conn.query({ 
-        sql: 'SELECT c.id AS comment_id, user_id, nickname, created_at, content FROM ?? AS c INNER JOIN ?? AS u ON parent_id = 0 AND user_id = u.id ORDER BY created_at DESC LIMIT ?, 10',
-        values: [ commentsTable, usersTable, commentStartNumber ]
-  
-      }, (error, results) => {
-        if (error) throw error;
-  
-        res.locals.comment = results;
-        
-        // set multiple sql statement for subcomments
-        let sql = '';
-        for (let i = 0; i < res.locals.comment.length; i++) {
-          sql += `SELECT c.id AS comment_id, user_id, nickname, created_at, content, parent_id FROM ${commentsTable} AS c INNER JOIN ${usersTable} AS u WHERE parent_id = ${res.locals.comment[i].comment_id} AND user_id = u.id ORDER BY created_at ASC`;
-        }
-  
-        // get subcomments
-        conn.query({ sql }, (error, results) => {
-          if (error) throw error;
-          
-          // show subcomments
-          for (let i = 0; i < res.locals.comment.length; i++) {
-            res.locals.comment[i].subComment = results[i];
-          }
-          
-          res.render('index');
-        });
-      });
-    });
+    sequelize.query('SELECT `comment`.`id` AS `commentId` , `comment`.`username` AS `username` , `comment`.`parentId` AS `parentId` , `comment`.`topic` AS `topic` , `comment`.`content` AS `content` , `comment`.`createdAt` AS `createdAt` , `user`.`nickname` AS `nickname` FROM `cwenwen_comments` AS `comment` INNER JOIN `cwenwen_users` AS `user` ON `comment`.`username` = `user`.`username` WHERE `comment`.`parentId` = 0 ORDER BY `comment`.`createdAt` DESC LIMIT 10;', { type: sequelize.QueryTypes.SELECT })
+      .then(comments => {
+        res.locals.comments = comments;
+        console.log(comments, typeof(comments[0].createdAt))
+        const nickname = req.session.nickname;
+        res.render('index', {nickname});
+      })
+      .catch(error => {throw error})
   },
 
   modifyComment: (req, res) => {

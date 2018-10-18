@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('./db');
+const User = require('../model/user');
 
 const Comment = sequelize.define('comment', {
   id: {
