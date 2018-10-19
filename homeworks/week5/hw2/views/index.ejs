@@ -56,7 +56,37 @@
       <% } %>
     </div>
     <% } %>
-    <div class="footer text-muted text-center m-4">This page is created by <a class="font-weight-bold" href="https://github.com/cwenwen">me</a> - <a class="font-weight-bold" href="#">View on Github</a></div>
+    <%
+      var prevPageDisable = '',
+          prevPageLink = `/pages/${currentPage - 1}`,
+          nextPageDisable = '',
+          nextPageLink = `/pages/${currentPage + 1}`;
+
+      if (currentPage === 1) {
+        prevPageDisable = 'disabled';
+        prevPageLink = '#';
+      }
+      if (currentPage === totalPages) {
+        nextPageDisable = 'disabled';
+        nextPageLink = '#';
+      }
+    %>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item <%= prevPageDisable %>">
+          <a class="page-link" href="<%= prevPageLink %>" tabindex="-1">Previous</a>
+        </li>
+        <% for (let i = 1; i <= totalPages; i++ ) { %>
+          <li class="page-item <% if (i === currentPage) { %>disabled<% } %>">
+            <a class="page-link" href="/pages/<%= i %>"><%= i %></a>
+          </li>
+        <% } %>
+        <li class="page-item <%= nextPageDisable %>">
+          <a class="page-link" href="<%= nextPageLink %>">Next</a>
+        </li>
+      </ul>
+    </nav>
+    <%- include('footer') %>
   </div>
   <%- include('scripts', {jsFile: 'index'}) %>
 </body>
