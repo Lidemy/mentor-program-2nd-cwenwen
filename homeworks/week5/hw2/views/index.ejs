@@ -35,7 +35,7 @@
         <input type="text" name="topic" class="create-comment--topic rounded" placeholder="Topic" required />
         <textarea name="content" class="create-comment--content mt-2 rounded" placeholder="Comment" required></textarea>
         <input name="parent_id" type="hidden" value="0" />
-        <input class="create-comment__btn mt-2 rounded" type="submit" />
+        <div class="create-comment__btn mt-2 text-center rounded">submit</div>
       </div>
     <% } %>
     <% for (let i = 0; i < comments.length; i++ ) { %>
@@ -77,7 +77,7 @@
           <input name="topic" type="hidden" value="<%= comments[i].topic %>" />  
           <textarea name="content" class="create-comment-sub--content rounded" placeholder="Comment" required></textarea>
           <input name="parent_id" type="hidden" value="<%= comments[i].commentId %>" />
-          <input class="create-comment__btn mt-2 rounded" type="submit" />
+          <div class="create-comment__btn mt-2 text-center rounded">submit</div>
         </div>
       <% } %>
     </div>

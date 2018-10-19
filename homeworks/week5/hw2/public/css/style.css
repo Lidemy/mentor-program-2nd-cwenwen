@@ -26,13 +26,13 @@
 [class^=create-comment] textarea {
   min-height: 100px;
 }
-[class^=create-comment] [type=submit] {
+[class^=create-comment] .create-comment__btn {
   text-transform: uppercase;
   color: white;
   background-color: #999;
   transition: 0.3s;
 }
-[class^=create-comment] [type=submit]:hover {
+[class^=create-comment] .create-comment__btn:hover {
   cursor: pointer;
   background-color: #ccc;
   border: 1px solid #ccc;
