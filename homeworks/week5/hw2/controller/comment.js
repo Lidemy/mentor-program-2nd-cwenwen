@@ -83,8 +83,23 @@ module.exports = {
           .then(comments => {
             res.locals.comments = comments;
 
-            const nickname = req.session.nickname;
-            res.render('index', {nickname});
+            // get subcomments
+            let promises = [];
+            for (let i = 0; i < res.locals.comments.length; i++) {
+              promises.push(
+                sequelize
+                  .query('SELECT `comment`.`id` AS `commentId` , `comment`.`username` AS `username` , `comment`.`parentId` AS `parentId` , `comment`.`content` AS `content` , `comment`.`createdAt` AS `createdAt` , `user`.`nickname` AS `nickname` FROM `cwenwen_comments` AS `comment` INNER JOIN `cwenwen_users` AS `user` ON `comment`.`username` = `user`.`username` WHERE `comment`.`parentId` = ' + res.locals.comments[i].commentId + ' ORDER BY `comment`.`createdAt` ASC;', { type: sequelize.QueryTypes.SELECT })
+                  .then(subcomments => {
+                    res.locals.comments[i].subComments = subcomments;
+                  })
+                  .catch(error => {throw error})
+              )
+            }
+            // after getting all subcomments
+            Promise.all(promises).then(() => {
+              const nickname = req.session.nickname;
+              res.render('index', {nickname});
+            });
           })
           .catch(error => {throw error})
 

@@ -46,11 +46,23 @@
       </div>
       <hr />
       <p class="comment--content pb-3"><%- comments[i].content.replace(/\n/g, '<br/>') %></p>
+      <%
+      for (let j = 0; j < comments[i].subComments.length; j++) { 
+        if (comments[i].subComments[j].parentId === comments[i].commentId) {
+      %>
+      <div class="subcomment mt-3 ml-4 p-4 <% if (comments[i].subComments[j].username === comments[i].username) { %>border<% } else { %>bg-light<% } %> rounded">
+        <div class="row">
+          <div class="col"><span class="subcomment--nickname"><%= comments[i].subComments[j].nickname %></span><span class="subcomment--username ml-2 font-weight-light font-italic">(<%= comments[i].subComments[j].username %>)</span></div><div class="subcomment--created-at col text-right"><%= comments[i].subComments[j].createdAt.toString().slice(4, 21) %></div>
+        </div>
+        <hr />
+        <p class="subcomment--content m-0 p-0"><%- comments[i].subComments[j].content.replace(/\n/g, '<br/>') %></p>
+      </div>
+      <% } } %>
       <% if (nickname) { %>
         <div class="create-comment-sub mt-3 ml-4 p-4 rounded" action="" method="post">
-          <input name="topic" type="hidden" value="topic" />  
+          <input name="topic" type="hidden" value="<%= comments[i].topic %>" />  
           <textarea name="content" class="create-comment-sub--content rounded" placeholder="Comment" required></textarea>
-          <input name="parent_id" type="hidden" value="123" />
+          <input name="parent_id" type="hidden" value="<%= comments[i].commentId %>" />
           <input class="create-comment__btn mt-2 rounded" type="submit" />
         </div>
       <% } %>
