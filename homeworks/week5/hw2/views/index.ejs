@@ -52,6 +52,7 @@
       </div>
       <hr />
       <p class="comment--content pb-3"><%- comments[i].content.replace(/\n/g, '<br/>') %></p>
+      <div class="comment--id"><%= comments[i].commentId %></div>
       <%
       for (let j = 0; j < comments[i].subComments.length; j++) { 
         if (comments[i].subComments[j].parentId === comments[i].commentId) {
@@ -68,6 +69,7 @@
         </div>
         <hr />
         <p class="subcomment--content m-0 p-0"><%- comments[i].subComments[j].content.replace(/\n/g, '<br/>') %></p>
+        <div class="subcomment--id"><%= comments[i].subComments[j].commentId %></div>
       </div>
       <% } } %>
       <% if (nickname) { %>

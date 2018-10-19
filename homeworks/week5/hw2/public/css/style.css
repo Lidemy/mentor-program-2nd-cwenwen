@@ -75,4 +75,14 @@
   word-break: break-all;
 }
 
+.edit-textarea {
+  border: 1px solid #999;
+  width: 100%;
+  min-height: 100px;
+}
+
+[class$=comment--id] {
+  display: none;
+}
+
 /*# sourceMappingURL=style.css.map */

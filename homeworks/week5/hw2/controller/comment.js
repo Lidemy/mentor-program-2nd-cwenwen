@@ -1,4 +1,3 @@
-const Sequelize = require('sequelize');
 const sequelize = require('../model/db');
 const Comment = require('../model/comment');
 const User = require('../model/user');
@@ -108,26 +107,26 @@ module.exports = {
   },
 
   modifyComment: (req, res) => {
-
-    conn.query({
-      sql: 'UPDATE ?? SET content = ? WHERE id = ?',
-      values: [commentsTable, req.body.content, req.body.comment_id]
-    },(error, results)=>{
-  
-      if (error) res.send('error');
-      else res.send('modified');
-    });
+    Comment
+      .update({
+        content: req.body.content,
+      }, {
+        where: {
+          id: req.body.commentId
+        }
+      })
+      .then(() => res.send('modified'))
+      .catch(error => {throw error})
   },
 
   deleteComment: (req, res) => {
-
-    conn.query({
-      sql: 'DELETE FROM ?? WHERE id = ? OR parent_id = ?',
-      values: [commentsTable, req.body.comment_id, req.body.comment_id]
-    }, (error, results) => {
-  
-      if (error) res.send('error');
-      else res.send('comment deleted');
-    });
+    Comment
+      .destroy({
+        where: {
+          id: req.body.commentId
+        }
+      })
+      .then(() => res.send('deleted'))
+      .catch(error => {throw error})
   }
 }

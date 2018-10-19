@@ -90,3 +90,13 @@ $create-comment-grey-medium: #999;
 .comment--topic {
   word-break: break-all;
 }
+
+.edit-textarea {
+  border: 1px solid $create-comment-grey-medium;
+  width: 100%;
+  min-height: 100px;
+}
+
+[class$="comment--id"] {
+  display: none;
+}
