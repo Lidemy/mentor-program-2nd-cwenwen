@@ -5,10 +5,11 @@ const saltRounds = 10;
 module.exports =  {
 
   register: (req, res) => {
-    User
+    bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
+      User
       .create({
         username: req.body.username,
-        password: bcrypt.hashSync(req.body.password, saltRounds),
+        password: hash,
         nickname: req.body.nickname
       })
       .then(() => {
@@ -19,6 +20,7 @@ module.exports =  {
       .catch(error => {
         res.send('error');
       })
+    });
   },
 
   login : (req, res) => {
@@ -29,15 +31,19 @@ module.exports =  {
         }
       })
       .then(data => {
-        if (bcrypt.compareSync(req.body.password, data[0].dataValues.password)) {
-          req.session.username = data[0].dataValues.username;
-          req.session.nickname = data[0].dataValues.nickname;
-          res.send('ok');
-
-        // wrong password
-        } else {
-          res.send('error');
-        }
+        bcrypt
+          .compare(req.body.password, data[0].dataValues.password, (error, response) => {
+            if (response) {
+              // Passwords match
+              req.session.username = data[0].dataValues.username;
+              req.session.nickname = data[0].dataValues.nickname;
+              res.send('ok');
+          
+            } else {
+              // Passwords don't match
+              res.send('error');
+            } 
+        });
       })
       .catch(error => {
         res.send('error');
