@@ -5,20 +5,25 @@ const saltRounds = 10;
 module.exports =  {
 
   register: (req, res) => {
-    User
-      .create({
-        username: req.body.username,
-        password: bcrypt.hashSync(req.body.password, saltRounds),
-        nickname: req.body.nickname
+    bcrypt
+      .hash(req.body.password, saltRounds)
+      .then(hash => {
+        User
+          .create({
+            username: req.body.username,
+            password: hash,
+            nickname: req.body.nickname
+          })
+          .then(() => {
+            req.session.username = req.body.username;
+            req.session.nickname = req.body.nickname;
+            res.send('ok');
+          })
+          .catch(error => {
+            res.send('error');
+          })
       })
-      .then(() => {
-        req.session.username = req.body.username;
-        req.session.nickname = req.body.nickname;
-        res.send('ok');
-      })
-      .catch(error => {
-        res.send('error');
-      })
+      .catch(err => {throw err})
   },
 
   login : (req, res) => {
@@ -29,15 +34,21 @@ module.exports =  {
         }
       })
       .then(data => {
-        if (bcrypt.compareSync(req.body.password, data[0].dataValues.password)) {
-          req.session.username = data[0].dataValues.username;
-          req.session.nickname = data[0].dataValues.nickname;
-          res.send('ok');
-
-        // wrong password
-        } else {
-          res.send('error');
-        }
+        bcrypt
+          .compare(req.body.password, data[0].dataValues.password)
+          .then(response => {
+            if (response) {
+              // Passwords match
+              req.session.username = data[0].dataValues.username;
+              req.session.nickname = data[0].dataValues.nickname;
+              res.send('ok');
+          
+            } else {
+              // Passwords don't match
+              res.send('error');
+            } 
+          })
+          .catch(err => {throw err})
       })
       .catch(error => {
         res.send('error');
