@@ -8,22 +8,21 @@ module.exports =  {
     bcrypt
       .hash(req.body.password, saltRounds)
       .then(hash => {
-        User
+        return User
           .create({
             username: req.body.username,
             password: hash,
             nickname: req.body.nickname
           })
-          .then(() => {
-            req.session.username = req.body.username;
-            req.session.nickname = req.body.nickname;
-            res.send('ok');
-          })
-          .catch(error => {
-            res.send('error');
-          })
       })
-      .catch(err => {throw err})
+      .then(() => {
+        req.session.username = req.body.username;
+        req.session.nickname = req.body.nickname;
+        res.send('ok');
+      })
+      .catch(error => {
+        res.send('error');
+      })
   },
 
   login : (req, res) => {
