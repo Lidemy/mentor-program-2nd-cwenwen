@@ -16,65 +16,77 @@ document.querySelectorAll('.create-comment__btn').forEach(btn => {
     xhr.open('POST', '/insert_comment');
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send(`topic=${topic}&content=${content}&parentId=${parentId}`);
+
   })
 })
 
-// edit comment: 'edit' btn
-document.querySelectorAll('.edit__btn').forEach(btn => {
-  btn.addEventListener('click', e => {
+function editToSubmit(e) {
+  console.log("editToSubmit !!");
 
-    const content = e.target.parentNode.nextElementSibling.nextElementSibling.nextElementSibling;
-    const newTextArea = document.createElement('textarea');
-    
-    newTextArea.classList.add('edit-textarea', 'mt-2', 'rounded');
-    newTextArea.setAttribute("placeholder", "Comment");
-    newTextArea.setAttribute("required", "");
-    newTextArea.innerHTML = content.innerText;
-    content.outerHTML = newTextArea.outerHTML;
-    
-    // change buttons
-    e.target.innerText = 'Submit';
-    e.target.className = 'submit__btn btn btn-secondary btn-sm mr-1';
-    e.target.nextElementSibling.style.display = 'none'; 
+  const content = e.target.parentNode.nextElementSibling.nextElementSibling.nextElementSibling;
+  const newTextArea = document.createElement('textarea');
 
-    // edit comment: 'submit' btn
-    document.querySelectorAll('.submit__btn').forEach(btn => {
-      btn.addEventListener('click', e => {
+  newTextArea.classList.add('edit-textarea', 'mt-2', 'rounded');
+  newTextArea.setAttribute("placeholder", "Comment");
+  newTextArea.setAttribute("required", "");
+  newTextArea.innerHTML = content.innerText;
+  content.outerHTML = newTextArea.outerHTML;
 
-        const content = e.target.parentNode.nextElementSibling.nextElementSibling.nextElementSibling;
-        const commentId = content.nextElementSibling.innerText;
+  // change buttons
+  e.target.innerText = 'Submit';
+  e.target.className = 'submit__btn btn btn-secondary btn-sm mr-1';
+  e.target.nextElementSibling.style.display = 'none';
 
-        const xhr = new XMLHttpRequest();
+  // edit comment: 'submit' btn
+  document.querySelectorAll('.submit__btn').forEach(btn => {
+    btn.removeEventListener('click', editToSubmit)
+    btn.addEventListener('click', submitToEdit)
+  })
+}
 
-        xhr.onreadystatechange = () => {
-          if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.responseText === 'modified') {
-              if (e.target.parentNode.parentNode.classList.contains('comment')) {
-                content.outerHTML = `
+function submitToEdit(e) {
+  console.log("submitToEdit!!!!");
+  const content = e.target.parentNode.nextElementSibling.nextElementSibling.nextElementSibling;
+  const commentId = content.nextElementSibling.innerText;
+
+  const xhr = new XMLHttpRequest();
+
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.responseText === 'modified') {
+        if (e.target.parentNode.parentNode.classList.contains('comment')) {
+          content.outerHTML = `
                 <p class="comment--content pb-3">
                   ${content.value.replace(/\n/g, '<br/>')}
                 </p>
                 `
-              } else {
-                content.outerHTML = `
+        } else {
+          content.outerHTML = `
                 <p class="subcomment--content m-0 p-0">
                   ${content.value.replace(/\n/g, '<br/>')}
                 </p>
                 `
-              }
-              e.target.innerText = 'Edit';
-              e.target.className = 'edit__btn btn btn-secondary btn-sm mr-1';
-              e.target.nextElementSibling.style.display = 'inline'; 
-            }
-          }
         }
+        e.target.innerText = 'Edit';
+        e.target.className = 'edit__btn btn btn-secondary btn-sm mr-1';
+        e.target.nextElementSibling.style.display = 'inline';
+      }
+    }
+  }
 
-        xhr.open('POST', '/modify_comment');
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.send(`commentId=${commentId}&content=${content.value}`);
-      })
-    })
+  xhr.open('POST', '/modify_comment');
+  xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  xhr.send(`commentId=${commentId}&content=${content.value}`);
+
+  document.querySelectorAll('.edit__btn').forEach(btn => {
+    btn.removeEventListener('click', submitToEdit)
+    btn.addEventListener('click', editToSubmit)
   })
+}
+
+// edit comment: 'edit' btn
+document.querySelectorAll('.edit__btn').forEach(btn => {
+  btn.addEventListener('click', editToSubmit)
 })
 
 // delete comment
