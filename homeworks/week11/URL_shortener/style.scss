@@ -1,8 +1,4 @@
-$color_20: #214521;
-$color_30: #326732;
-$color_50: #53ac53;
-$color_80: #badeba;
-$color_90: #ddeedd;
+$color__short_url: #cc0000;
 
 html, body {
   margin: 0;
@@ -12,17 +8,12 @@ html, body {
   font-family: 'Chakra Petch', sans-serif;
 }
 
-html {
-  height: 100%;
-  background: linear-gradient($color_50, #003300);
-}
-
 .navbar {
   position: fixed;
   top: 0;
   height: 5rem;
   width: 100%;
-  background-color: $color_20;
+  background-color: black;
   font-size: 2.4rem;
   line-height: 5rem;
   color: white;
@@ -32,6 +23,7 @@ html {
 .container {
   display: flex;
   flex-direction: column;
+  top: 5rem;
   margin: 7rem auto;
   max-width: 600px;
   font-size: 2rem;
@@ -45,14 +37,14 @@ html {
   font-size: 1.6rem;
   height: 2rem;
   padding: .5rem;
-  border: 2px solid white;
+  border: 2px solid black;
 }
 
 [class^="btn"] {
   cursor: pointer;
   color: white;
   text-transform: uppercase;
-  opacity: .8;
+  opacity: .85;
 }
 
 .btn {
@@ -62,21 +54,22 @@ html {
     height: 5rem;
     line-height: 5rem;
     font-size: 2rem;
-    background-color: $color_30;
+    background-color: black;
     transition: .2s;
     &:hover {
       transform: scale(1.05);
-      box-shadow: .2rem .2rem $color_20;
+      box-shadow: .5rem .5rem #999999;
       opacity: 1;
     }
   }
   &__copy {
     display: inline-block;
+    //display: none;
     width: 5rem;
     height: 3rem;
     line-height: 3rem;
     margin-left: 1rem;
-    background-color: $color_50;
+    background-color: $color__short_url;
     font-size: 1.5rem;
     font-weight: normal;
     &:hover {
@@ -86,16 +79,16 @@ html {
 }
 
 .output {
-  background-color: $color_80;
   padding: 1rem;
   margin-top: 3rem;
+  border: 2px solid black;
 }
 
 [class^="url"]{
   word-break: break-all;
-  background-color: $color_90;
   padding: 2rem;
   margin: 2rem;
+  border: 2px dashed black;
 }
 
 .url {
@@ -106,7 +99,21 @@ html {
 
   &__short {
     font-weight: 900;
-    color: $color_50;
+    color: $color__short_url;
+  }
+}
+
+.footer {
+  font-size: 1.6rem;
+  &__link {
+    text-decoration: none;
+    font-weight: 900;
+    color: black;
+    opacity: .7;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 

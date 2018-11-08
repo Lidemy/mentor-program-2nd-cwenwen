@@ -6,17 +6,12 @@ html, body {
   font-family: "Chakra Petch", sans-serif;
 }
 
-html {
-  height: 100%;
-  background: linear-gradient(#53ac53, #003300);
-}
-
 .navbar {
   position: fixed;
   top: 0;
   height: 5rem;
   width: 100%;
-  background-color: #214521;
+  background-color: black;
   font-size: 2.4rem;
   line-height: 5rem;
   color: white;
@@ -26,6 +21,7 @@ html {
 .container {
   display: flex;
   flex-direction: column;
+  top: 5rem;
   margin: 7rem auto;
   max-width: 600px;
   font-size: 2rem;
@@ -38,14 +34,14 @@ html {
   font-size: 1.6rem;
   height: 2rem;
   padding: 0.5rem;
-  border: 2px solid white;
+  border: 2px solid black;
 }
 
 [class^=btn] {
   cursor: pointer;
   color: white;
   text-transform: uppercase;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .btn__create {
@@ -54,12 +50,12 @@ html {
   height: 5rem;
   line-height: 5rem;
   font-size: 2rem;
-  background-color: #326732;
+  background-color: black;
   transition: 0.2s;
 }
 .btn__create:hover {
   transform: scale(1.05);
-  box-shadow: 0.2rem 0.2rem #214521;
+  box-shadow: 0.5rem 0.5rem #999999;
   opacity: 1;
 }
 .btn__copy {
@@ -68,7 +64,7 @@ html {
   height: 3rem;
   line-height: 3rem;
   margin-left: 1rem;
-  background-color: #53ac53;
+  background-color: #cc0000;
   font-size: 1.5rem;
   font-weight: normal;
 }
@@ -77,16 +73,16 @@ html {
 }
 
 .output {
-  background-color: #badeba;
   padding: 1rem;
   margin-top: 3rem;
+  border: 2px solid black;
 }
 
 [class^=url] {
   word-break: break-all;
-  background-color: #ddeedd;
   padding: 2rem;
   margin: 2rem;
+  border: 2px dashed black;
 }
 
 .url__long {
@@ -95,7 +91,20 @@ html {
 }
 .url__short {
   font-weight: 900;
-  color: #53ac53;
+  color: #cc0000;
+}
+
+.footer {
+  font-size: 1.6rem;
+}
+.footer__link {
+  text-decoration: none;
+  font-weight: 900;
+  color: black;
+  opacity: 0.7;
+}
+.footer__link:hover {
+  opacity: 1;
 }
 
 @media only screen and (max-width: 660px) {
