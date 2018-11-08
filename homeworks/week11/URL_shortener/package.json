@@ -1,0 +1,14 @@
+{
+  "name": "url_shortener",
+  "version": "1.0.0",
+  "description": "An URL shortener with Express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wenwen Cheng",
+  "license": "ISC",
+  "dependencies": {
+    "sequelize": "^4.41.1"
+  }
+}
