@@ -1,10 +1,15 @@
-## 為什麼我們需要 Redux？
+## What is Redux?
 
+## Why we need Redux?
 
-## Redux 是什麼？
+## What is SPA? Is there any kind of web app needs to be a SPA?
 
+A single-page application (SPA) is a web application or web site that interacts with the user by dynamically rewriting the current page rather than loading entire new pages from a server. It makes the application behave more like a desktop application.  
 
-## Single Page Application 是什麼？有哪些頁面一定要用這個架構去設計嗎？
+The page does not reload at any point in the process, nor does control transfer to another page, although the location hash or the HTML5 History API can be used to provide the perception and navigability of separate logical pages in the application.  
 
+The recent SPA redesigns of streaming music site [Pandora](https://www.pandora.com/) and Google’s Gmail platform are great examples of this in practice.  
+ 
+When it comes to music streaming websites, it is interrupting to reload the whole page and make the music stopped while user wants to see another pages. Under the circumstances developers have no choice except using SPA.  
 
-## Redux 如何解決非同步（例如說 call API 拿資料）的問題
+## How does Redux deal with asynchronous problems such as making API calls?
